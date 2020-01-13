@@ -113,12 +113,25 @@ def add_pet_to_customer(customer, new_pet)
 end
 
 def customer_can_afford_pet(customer, can_buy_pet)
-  counter = 100
-  for cost in customer[:cash]
-    while (counter < alice_cash)
-      p "Go away Alice, ye huvnae got the dolla"
-      cost == total
-    end
+  if customer[:cash] < can_buy_pet[:price]
+    return false
+  else
+    return true
   end
-return total
+end
+
+def test_customer_can_afford_pet__insufficient_funds(customer, can_buy_pet)
+  if customer[:cash] < can_buy_pet[:price]
+    return true
+  else
+    return false
+  end
+end
+
+def test_customer_can_afford_pet__exact_funds(customer, can_buy_pet)
+  if customer[:cash] <=> can_buy_pet[:price]
+    return true
+  else
+    return false
+  end
 end
